@@ -1,0 +1,23 @@
+# Sumber foto produk asli
+
+Foto diunduh pada 8 November 2026 dari laman merek atau retailer melalui pencarian gambar web. Tidak ada gambar produk hasil AI. Data harga/rating/terjual pada aplikasi adalah contoh praktikum.
+
+| File | Sumber foto |
+|---|---|
+| headphones.webp | https://store.sony.com.au/dw/image/v2/ABBC_PRD/on/demandware.static/-/Sites-sony-master-catalog/default/dwd5eb873a/images/WH1000XM5B/WH1000XM5B_2.png |
+| nike.webp | https://www.tike.gr/files/images/products/media/CW2/CW2288-111/images/CW2288-111.jpg.webp |
+| airpods.webp | https://img.alicdn.com/i3/1917047079/O1CN01RLGZfn22AEjuZgsYh_%21%211917047079.png |
+| watch.webp | https://www.digimap.co.id/cdn/shop/files/Apple_Watch_Series_9_GPS_41mm_Pink_Aluminum_Light_Pink_Sport_Band_PDP_Image_Position-1__GBEN_20ef0252-c428-4fbe-81b0-2467421cebfd.jpg?v=1717742935 |
+| samba.webp | https://assets.adidas.com/images/w_600,f_auto,q_auto/eff59c254a4747a69944a2713d8ebc78_9366/Zapatillas_Samba_OG_Blanco_IH4879_01_standard.jpg |
+| backpack.webp | https://media.oslosportslager.no/bilder/nettbutikk/produkter2/sl-1021440.jpg |
+| tumbler.webp | https://res.cloudinary.com/outdoor-warehouse/image/upload/a_0,c_limit,f_auto,q_auto:good/v1575961299/assets/1015963_1015963-XCre_001.jpg |
+| speaker.webp | https://media.guitarcenter.com/is/image/MMGS7/M00591000003000-00-2000x2000.jpg |
+| newbalance.webp | https://i.ebayimg.com/images/g/cssAAOSwiUtlDATd/s-l1200.jpg |
+| mouse.webp | https://media.nedigital.sg/fairprice/90199572_XL1_20260611191552_844c709baae28df002021633fedad821.jpg |
+| serum.webp | https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dw333f7876/products/ORDINARY/UK200029817_ORDINARY.jpg |
+| lamp.webp | https://filemainstorage.blob.core.windows.net/images/1587_0609308_PE684439_S5.JPG |
+| shirt.webp | https://www.uniqlo.com/tw/hmall/test/u0000000017709/main/first/561/1.jpg |
+| laptop.webp | https://rossellimac.es/cdn/shop/articles/MacBook_Air_M2_Chip_Midnight_Pure_Front_Screen__USEN_7c366e94-a25b-45ae-88d8-b691eb44018b_1100x.jpg?v=1678374977 |
+| camera.webp | https://item-shopping.c.yimg.jp/i/n/dshopone-y_4549292205251_1_d_20260402151936 |
+| cream.webp | https://static.thcdn.com/productimg/original/11798691-1315192205125829.jpg |
+| cap.webp | https://supersport.tn/945-large_default/nike-sportswear-heritage86.jpg |

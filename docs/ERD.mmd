@@ -1,0 +1,55 @@
+erDiagram
+ USERS ||--o{ ORDERS : membuat
+ USERS ||--|| CARTS : memiliki
+ USERS ||--o{ ADDRESSES : menyimpan
+ CATEGORIES ||--o{ PRODUCTS : mengelompokkan
+ CARTS ||--o{ CART_ITEMS : memuat
+ PRODUCTS ||--o{ CART_ITEMS : dipilih
+ PRODUCTS ||--o{ ORDER_ITEMS : dicatat
+ ADDRESSES ||--o{ ORDERS : tujuan
+ ORDERS ||--|{ ORDER_ITEMS : merinci
+ ORDERS ||--|| PAYMENTS : dibayar
+ ORDERS ||--|| SHIPMENTS : dikirim
+ USERS ||--o{ PAYMENTS : memverifikasi
+ ORDERS ||--o{ AUDIT : mencatat
+ USERS ||--o{ AUDIT : melakukan
+ USERS { varchar id PK
+ varchar email UK
+ varchar password
+ varchar role
+ }
+ PRODUCTS { varchar id PK
+ varchar category_id FK
+ decimal price
+ int stock
+ varchar status
+ }
+ ORDERS { varchar id PK
+ varchar user_id FK
+ varchar address_id FK
+ varchar order_number UK
+ decimal total
+ varchar order_status
+ varchar idempotency_key UK
+ }
+ ORDER_ITEMS { varchar id PK
+ varchar order_id FK
+ varchar product_id FK
+ varchar product_name
+ decimal price
+ int quantity
+ decimal subtotal
+ }
+ PAYMENTS { varchar id PK
+ varchar order_id FK
+ decimal amount
+ varchar proof_file
+ varchar payment_status
+ varchar verified_by FK
+ }
+ SHIPMENTS { varchar id PK
+ varchar order_id FK
+ varchar courier
+ varchar tracking_number
+ varchar shipment_status
+ }

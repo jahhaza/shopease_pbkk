@@ -1,0 +1,30 @@
+digraph ShopEase {
+ graph [rankdir=TB, bgcolor="#f8faff", pad=0.5, nodesep=0.55, ranksep=0.8, fontname="DejaVu Sans", label="ShopEase — Entity Relationship Diagram\n10 tabel inti + audit · PK: primary key · FK: foreign key · UQ: unique", labelloc=t, fontsize=22, fontcolor="#1d2d49"];
+ node [shape=record, fontname="DejaVu Sans", fontsize=11, style="filled,rounded", fillcolor=white, color="#aac4ef", fontcolor="#365275", margin="0.18,0.13"];
+ edge [fontname="DejaVu Sans", fontsize=9, color="#7298cf", fontcolor="#56749e", arrowsize=0.7];
+ users [label="{users|id PK\lname, email UQ\lpassword hash, role\l}"];
+ categories [label="{categories|id PK\lname, slug UQ\ldescription\l}"];
+ products [label="{products|id PK, category_id FK\lname, slug UQ, description\lprice DECIMAL, stock\limage, status\l}"];
+ addresses [label="{addresses|id PK, user_id FK\lrecipient_name, phone\laddress, city, province\lpostal_code\l}"];
+ carts [label="{carts|id PK, user_id FK UQ\l}"];
+ cart_items [label="{cart_items|id PK, cart_id FK\lproduct_id FK, quantity\lUQ(cart_id, product_id)\l}"];
+ orders [label="{orders|id PK, user_id FK\laddress_id FK\lorder_number UQ\lidempotency_key UQ\lsubtotal, shipping_cost, total\lorder_status, notes, created_at\l}"];
+ order_items [label="{order_items|id PK, order_id FK\lproduct_id FK\lproduct_name + price snapshot\lquantity, subtotal\l}"];
+ payments [label="{payments|id PK, order_id FK UQ\lmethod, amount, proof_file\lpayment_status\lverified_by FK users\lverified_at, reason\l}"];
+ shipments [label="{shipments|id PK, order_id FK UQ\lcourier, tracking_number\lshipment_status\lshipped_at, delivered_at\l}"];
+ audit [label="{audit|id PK, order_id FK\luser_id FK\laction, created_at\l}"];
+ users -> addresses [label="1:N"];
+ users -> carts [label="1:1"];
+ users -> orders [label="1:N"];
+ categories -> products [label="1:N"];
+ addresses -> orders [label="1:N"];
+ carts -> cart_items [label="1:N"];
+ products -> cart_items [label="1:N"];
+ orders -> order_items [label="1:N"];
+ products -> order_items [label="1:N"];
+ orders -> payments [label="1:1"];
+ users -> payments [label="verifikasi 1:N",style=dashed];
+ orders -> shipments [label="1:1"];
+ orders -> audit [label="1:N"];
+ users -> audit [label="pelaku 1:N",style=dashed];
+}
