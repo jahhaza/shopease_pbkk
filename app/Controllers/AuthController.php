@@ -58,7 +58,7 @@ class AuthController extends ApiController
         $destination = match ($result['user']['role']) {
             'admin' => 'admin',
             'operator' => 'operator',
-            default => '',
+            default => 'dashboard',
         };
         return redirect()->to(site_url($destination))->withCookies()
             ->with('success', 'Halo, ' . $result['user']['name'] . '. Kamu berhasil masuk.');
@@ -73,14 +73,11 @@ class AuthController extends ApiController
     private function authPage(string $mode, array $data): string
     {
         $values = array_intersect_key($data['values'], array_flip(['name', 'email', 'phone', 'address']));
-        return view('frontend/home', [
+        return view('auth/' . $mode, [
             'title' => ($mode === 'login' ? 'Masuk' : 'Daftar') . ' | ShopEase',
-            'authInitial' => [
-                'mode' => $mode,
-                'values' => $values,
-                'error' => $data['error'],
-                'errors' => $data['errors'] ?? [],
-            ],
+            'values' => $values,
+            'error' => $data['error'] ?? null,
+            'errors' => $data['errors'] ?? [],
         ]);
     }
 

@@ -8,6 +8,10 @@ final class AccountController extends BaseController
     {
         return $this->page('Akun Saya', 'profile');
     }
+    public function customer(): string
+    {
+        return $this->page('Dashboard Customer', 'dashboard');
+    }
 
     public function admin(): string
     {

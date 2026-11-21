@@ -6,6 +6,7 @@ $routes->get('/', 'HomeController::index');
 $routes->get('about','HomeController::about');
 $routes->get('contact','HomeController::contact');
 $routes->get('catalog', 'HomeController::catalog');
+$routes->get('products', 'HomeController::catalog');
 $routes->get('wishlist', 'HomeController::wishlist');
 foreach (['cart', 'checkout'] as $page) {
     $routes->get($page, static fn () => redirect()->to(site_url() . '#' . $page), ['filter' => 'auth:customer']);
@@ -18,6 +19,7 @@ $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::authenticate');
 $routes->post('logout', 'AuthController::logout');
 $routes->get('profil', 'AccountController::profil', ['filter' => 'auth']);
+$routes->get('dashboard','AccountController::customer',['filter'=>'auth:customer']);
 $routes->get('admin', 'AccountController::admin', ['filter' => 'auth:admin']);
 $routes->get('operator', 'AccountController::operator', ['filter' => 'auth:operator']);
 $routes->get('api/session','ApiController::session');
@@ -33,9 +35,12 @@ $routes->group('api',['filter'=>'auth:customer,admin,operator'],static function(
  $routes->post('order-action','OrderController::action');
 });
 $routes->group('api',['filter'=>'auth:customer'],static function($routes){
+ $routes->post('profile','ApiController::profile');
  $routes->get('cart','CartController::index');
  $routes->post('cart','CartController::update');
- $routes->match(['get','post'],'addresses','CheckoutController::addresses');
+ $routes->match(['GET','POST'],'addresses','CheckoutController::addresses');
+ $routes->post('addresses/(:segment)/update','CheckoutController::updateAddress/$1');
+ $routes->post('addresses/(:segment)/delete','CheckoutController::deleteAddress/$1');
  $routes->post('checkout','CheckoutController::index');
  $routes->post('upload/proof','ApiController::upload/proof');
 });
@@ -45,4 +50,27 @@ $routes->group('api',['filter'=>'auth:admin'],static function($routes){
  $routes->post('admin/category','Admin\CategoryController::save');
  $routes->post('admin/product','Admin\ProductController::save');
  $routes->post('upload/product','ApiController::upload/product');
+});
+
+$routes->group('admin', ['filter'=>'auth:admin,operator'], static function($routes){
+ foreach(['products'=>'ProductController','categories'=>'CategoryController'] as $path=>$controller){
+  $routes->get($path, 'Admin\\'.$controller.'::index');
+  $routes->get($path.'/create', 'Admin\\'.$controller.'::create');
+  $routes->post($path.'/store', 'Admin\\'.$controller.'::store');
+  $routes->get($path.'/edit/(:segment)', 'Admin\\'.$controller.'::edit/$1');
+  $routes->post($path.'/update/(:segment)', 'Admin\\'.$controller.'::update/$1');
+  $routes->post($path.'/delete/(:segment)', 'Admin\\'.$controller.'::delete/$1');
+ }
+ $routes->post('products/(:segment)/images/(:num)/primary','Admin\ProductController::primary/$1/$2');
+ $routes->post('products/(:segment)/images/(:num)/delete','Admin\ProductController::deleteImage/$1/$2');
+ $routes->get('inventory','Admin\InventoryController::index');
+ $routes->post('inventory/update/(:segment)','Admin\InventoryController::update/$1');
+});
+$routes->group('admin/karyawan',['filter'=>'auth:admin'],static function($routes){
+ $routes->get('/','Admin\KaryawanController::index');
+ $routes->get('create','Admin\KaryawanController::create');
+ $routes->post('store','Admin\KaryawanController::store');
+ $routes->get('edit/(:num)','Admin\KaryawanController::edit/$1');
+ $routes->post('update/(:num)','Admin\KaryawanController::update/$1');
+ $routes->post('delete/(:num)','Admin\KaryawanController::delete/$1');
 });
