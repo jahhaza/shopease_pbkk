@@ -26,8 +26,7 @@ class AuthFilter implements FilterInterface
             if ($api) {
                 return service('response')->setStatusCode(403)->setJSON(['error' => 'Anda tidak memiliki izin.']);
             }
-            $destination = in_array($user['role'], ['admin', 'operator'], true) ? $user['role'] : '';
-            return redirect()->to(site_url($destination))->with('access_error', 'Kamu tidak punya akses ke halaman itu.');
+            return redirect()->to(site_url())->with('access_error', 'Kamu tidak punya akses ke halaman itu.');
         }
     }
 

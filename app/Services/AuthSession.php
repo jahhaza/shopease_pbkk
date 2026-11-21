@@ -44,6 +44,7 @@ final class AuthSession
         session()->set([
             'isLoggedIn' => true,
             'id_user' => (int) $user['id_user'],
+            'user_id' => (int) $user['id_user'],
             'name' => $user['name'],
             'email' => $user['email'],
             'role' => $user['role'],

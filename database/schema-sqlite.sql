@@ -96,6 +96,7 @@ CREATE TABLE `payments` (
 	`method` text DEFAULT 'Transfer manual' NOT NULL,
 	`amount` integer NOT NULL,
 	`proof_file` text,
+	`sender_name` text,
 	`payment_status` text DEFAULT 'unpaid' NOT NULL,
 	`verified_by` integer,
 	`verified_at` text,
